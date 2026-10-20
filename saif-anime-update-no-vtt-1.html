@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100d1c">
+<title>SAIF ANIME</title>
+<style>
+:root{--bg:#0d0b14;--panel:#171321;--panel2:#211a31;--purple:#a78bfa;--pink:#f472b6;--text:#f7f3ff;--muted:#b8aecb;--line:#302640}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#30204a 0,transparent 35%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+header{position:sticky;top:0;z-index:5;background:#100d1ceF;backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:14px 16px}
+.top{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-weight:900;font-size:23px;letter-spacing:.5px}.brand span{color:var(--purple)}.brand small{display:block;font-size:10px;color:var(--muted);font-weight:500;letter-spacing:2px}
+.iconbtn{border:1px solid var(--line);background:var(--panel);color:white;border-radius:12px;padding:10px 12px;font-size:15px;cursor:pointer}
+main{max-width:1100px;margin:auto;padding:18px 16px 90px}.hero{border:1px solid #45345e;border-radius:24px;padding:25px 20px;background:linear-gradient(125deg,#33214c,#1a1428 65%,#2d173b);position:relative;overflow:hidden}
+.hero:after{content:"🎌";position:absolute;font-size:100px;opacity:.13;left:15px;top:20px;transform:rotate(-12deg)}.eyebrow{color:#e9d5ff;font-size:12px;font-weight:800;letter-spacing:1px}.hero h1{font-size:clamp(27px,6vw,43px);line-height:1.15;margin:10px 0}.hero p{color:#d8cce8;max-width:540px;line-height:1.8;margin:0 0 18px}.cta{border:0;border-radius:13px;padding:12px 17px;background:linear-gradient(90deg,var(--purple),var(--pink));color:#170d24;font-weight:900;cursor:pointer}
+.searchrow{display:flex;gap:9px;margin:20px 0 14px}.searchrow input{width:100%;min-width:0;background:var(--panel);border:1px solid var(--line);color:white;border-radius:14px;padding:14px;font:inherit;outline:none}.searchrow input:focus{border-color:var(--purple)}
+.tabs{display:flex;gap:8px;overflow:auto;padding:2px 0 12px}.tab{white-space:nowrap;background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:9px 14px;border-radius:999px;cursor:pointer}.tab.active{background:#3a2855;border-color:var(--purple);color:white}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;margin:20px 0 12px}.sectionhead h2{font-size:20px;margin:0}.sectionhead span{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;overflow:hidden;min-width:0;cursor:pointer;transition:transform .15s,border-color .15s}.card:hover{transform:translateY(-3px);border-color:#7655a0}.poster{height:190px;display:flex;align-items:center;justify-content:center;font-size:62px;position:relative;background:linear-gradient(140deg,var(--c1),var(--c2));overflow:hidden}.poster:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#100d1c99,transparent 60%)}.poster .symbol{filter:drop-shadow(0 8px 10px #0005);transform:translateY(-3px)}.score{position:absolute;top:9px;right:9px;z-index:1;background:#0d0b14c9;border:1px solid #ffffff35;border-radius:8px;padding:4px 7px;font-size:11px}.heart{position:absolute;top:8px;left:8px;z-index:2;border:1px solid #ffffff40;background:#100d1ccc;color:white;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer}.heart.saved{color:#fb7185}.cardbody{padding:11px}.cardtitle{font-weight:800;font-size:14px;line-height:1.45;margin-bottom:6px}.meta{font-size:11px;color:var(--muted);display:flex;gap:7px;flex-wrap:wrap}.tag{color:#d9c5ff;background:#30213f;border-radius:6px;padding:3px 6px;margin-top:8px;display:inline-block;font-size:10px}
+.empty{grid-column:1/-1;text-align:center;border:1px dashed var(--line);border-radius:16px;padding:30px;color:var(--muted);line-height:1.8}
+footer{max-width:1100px;margin:0 auto;padding:20px 16px 35px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.8}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:6;background:#100d1cf2;backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;justify-content:center;gap:5px;padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
+nav button{flex:1;max-width:170px;background:transparent;border:0;color:var(--muted);padding:8px 4px;border-radius:12px;cursor:pointer;font:inherit;font-size:12px}nav button.active{background:#30213f;color:#fff}nav b{display:block;font-size:18px;margin-bottom:2px}
+.modal{display:none;position:fixed;inset:0;z-index:10;background:#000b;align-items:flex-end;justify-content:center;padding:12px}.modal.open{display:flex}.sheet{width:100%;max-width:650px;max-height:90vh;overflow:auto;background:var(--panel);border:1px solid #4c3b60;border-radius:22px;padding:18px}.sheettop{display:flex;justify-content:space-between;gap:10px;align-items:center}.close{border:0;background:var(--panel2);color:white;border-radius:10px;padding:9px 12px;font-size:18px}.detailhero{border-radius:16px;padding:20px;margin:14px 0;background:linear-gradient(135deg,#34214e,#20152d);display:flex;gap:15px;align-items:center}.detailicon{font-size:58px}.detailhero h2{margin:0 0 6px;font-size:22px}.detailhero p,.desc{color:var(--muted);line-height:1.8;font-size:14px}.actions{display:flex;gap:9px;flex-wrap:wrap}.secondary{border:1px solid var(--line);background:var(--panel2);color:white;border-radius:12px;padding:11px 14px;font:inherit;cursor:pointer}.note{font-size:12px;color:var(--muted);background:#211a31;padding:12px;border-radius:12px;line-height:1.8;margin-top:14px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.poster{height:230px}.hero{padding:36px}.modal{align-items:center}}
+@media(min-width:900px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.poster{height:250px}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="brand">SAIF <span>ANIME</span><small>DISCOVER YOUR NEXT WORLD</small></div><button class="iconbtn" id="headFav" aria-label="المفضلة">♡ <span id="favCount">0</span></button></div></header>
+<main>
+<section class="hero"><div class="eyebrow">✦ عالمك يبدأ من هنا</div><h1>الأنمي اللي تحبّه،<br>في بلاصة وحدة.</h1><p>اكتشف مغامرات جديدة، تعرّف على القصص والشخصيات، واحفظ الأنميات اللي تحبّ ترجع لها.</p><button class="cta" id="explore">اكتشف الأنميات ←</button></section>
+<div class="searchrow"><input id="search" type="search" placeholder="🔎  قلّب على اسم أنمي..." aria-label="البحث عن الأنمي"></div>
+<div class="tabs" id="tabs">
+<button class="tab active" data-cat="الكل">الكل</button><button class="tab" data-cat="إيسيكاي">إيسيكاي</button><button class="tab" data-cat="سحر">سحر وقوى</button><button class="tab" data-cat="مغامرة">مغامرات</button><button class="tab" data-cat="أكشن">أكشن</button><button class="tab" data-cat="كوميديا">كوميديا</button>
+</div>
+<div class="sectionhead"><h2 id="listTitle">أنميات تستحقّ الاكتشاف ✨</h2><span id="resultCount"></span></div>
+<div class="grid" id="grid"></div>
+<div class="sectionhead"><h2>الحلقات المتاحة ▶️</h2><span id="episodeCount">0 حلقة</span></div>
+<div id="episodeLibrary" class="grid"><div class="empty">ما فماش حلقات مضافة توّا. المطوّر ينجم يضيف فيديو يملك حق عرضه.</div></div>
+</main>
+<footer>SAIF ANIME — نسخة تجريبية لاكتشاف الأنمي. معلومات الأنميات هنا للتجربة وقد تحتاج إلى التحقّق والتحديث. التطبيق لا يستضيف حلقات؛ أضف فقط محتوى تملك حق عرضه أو مصادر مرخّصة.<p><button class="secondary" id="devEntry">⚙️ دخول المطوّر</button></p></footer>
+<nav><button class="active" data-view="home"><b>⌂</b>الرئيسية</button><button data-view="discover"><b>✧</b>اكتشف</button><button data-view="favorites"><b>♡</b>المفضّلة</button></nav>
+<div class="modal" id="modal"><div class="sheet"><div class="sheettop"><strong>تفاصيل الأنمي</strong><button class="close" id="closeModal">✕</button></div><div id="detail"></div></div></div>
+<div class="modal" id="devModal"><div class="sheet">
+  <div class="sheettop"><strong>⚙️ لوحة المطوّر</strong><button class="close" id="closeDev">✕</button></div>
+  <p class="desc">نسخة أولية للتجربة: كود المطوّرين مشترك، وكود المدير الرئيسي منفصل. اكتب اسم الموسم نفسه لإضافة حلقات جديدة إليه.</p>
+  <label for="roleSelect">نوع الدخول</label><select id="roleSelect" style="display:block;width:100%;margin:8px 0 12px;background:#211a31;border:1px solid #302640;color:white;border-radius:12px;padding:13px;font:inherit"><option value="dev">المطوّر</option><option value="admin">المدير الرئيسي</option></select><label for="devPass">رمز الدخول</label>
+  <input id="devPass" type="password" placeholder="أدخل الرمز" style="display:block;width:100%;margin:8px 0 12px;background:#211a31;border:1px solid #302640;color:white;border-radius:12px;padding:13px;font:inherit">
+  <button class="cta" id="devLogin">دخول</button><p id="devMsg" class="desc" aria-live="polite"></p>
+  <div id="devTools" style="display:none">
+    <hr style="border-color:#302640;margin:18px 0">
+    <label for="episodeAnime">اسم الأنمي</label>
+    <input id="episodeAnime" type="text" placeholder="مثال: أنمي تجريبي" style="display:block;width:100%;margin:8px 0 12px;background:#211a31;border:1px solid #302640;color:white;border-radius:12px;padding:13px;font:inherit">
+    <label for="episodeSeason">اسم الموسم (اكتب نفس الاسم لإضافة حلقات لاحقًا)</label>
+    <input id="episodeSeason" type="text" value="الموسم 1" placeholder="مثال: الموسم الأول" style="display:block;width:100%;margin:8px 0 12px;background:#211a31;border:1px solid #302640;color:white;border-radius:12px;padding:13px;font:inherit">
+    <label for="episodeTitle">عنوان الحلقة (اختياري عند اختيار أكثر من ملف)</label>
+    <input id="episodeTitle" type="text" placeholder="مثال: الحلقة 1 — البداية" style="display:block;width:100%;margin:8px 0 12px;background:#211a31;border:1px solid #302640;color:white;border-radius:12px;padding:13px;font:inherit">
+    <label for="episodeFile">اختار حلقة أو عدّة حلقات من تليفونك</label>
+    <input id="episodeFile" type="file" accept="video/*" multiple style="display:block;width:100%;margin:8px 0 12px;color:white">
+    <button class="cta" id="saveEpisode">حفظ الحلقة في هذا المتصفّح</button>
+    <video id="episodePreview" controls playsinline style="display:none;width:100%;margin-top:14px;border-radius:12px;background:#000"></video>
+    <p class="note">هذه نسخة تجريبية محلية: الحلقات تُحفظ في مساحة المتصفح على هذا الجهاز فقط إذا سمح المتصفح بذلك. ليست منشورة لبقية المستخدمين. لا ترفع إلا فيديوهات تملك حق عرضها.</p>
+    <div id="adminTools" style="display:none"><hr style="border-color:#302640;margin:18px 0"><h3>👑 أدوات المدير الرئيسي</h3><label for="newDevCode">تغيير كود المطوّرين</label><input id="newDevCode" type="password" placeholder="الكود الجديد" style="display:block;width:100%;margin:8px 0 12px;background:#211a31;border:1px solid #302640;color:white;border-radius:12px;padding:13px;font:inherit"><button class="secondary" id="changeDevCode">تغيير الكود</button><p id="adminMsg" class="desc"></p><h3>حذف أنمي وحلقاته من هذا الجهاز</h3><div id="animeDeleteList"></div><p class="note">الحذف هنا محلي في هذا الجهاز فقط، وليس من سيرفر عام.</p></div><div id="savedEpisodesAdmin"></div>
+  </div>
+</div></div>
+<script>
+const animeList=[
+{id:1,title:"That Time I Got Reincarnated as a Slime",ar:"حياتي عندما أُعيد تجسيدي كسلايم",genre:["إيسيكاي","سحر","مغامرة"],type:"إيسيكاي • فانتازيا",seasons:"عدّة مواسم",score:"8.1",emoji:"🌀",c1:"#145c76",c2:"#5a2d87",desc:"رجل يُعاد تجسيده في عالم خيالي على هيئة سلايم، ويبدأ ببناء مجتمع جديد وتكوين صداقات وقوى مميزة."},
+{id:2,title:"Mushoku Tensei: Jobless Reincarnation",ar:"موشوكو تينسي",genre:["إيسيكاي","سحر","مغامرة"],type:"إيسيكاي • فانتازيا",seasons:"عدّة أجزاء",score:"8.2",emoji:"✨",c1:"#87552c",c2:"#4a376c",desc:"فرصة ثانية للحياة في عالم مليء بالسحر والمغامرات، مع رحلة طويلة للتعلّم والنمو."},
+{id:3,title:"The Eminence in Shadow",ar:"ذا إيميننس إن شادو",genre:["إيسيكاي","سحر","أكشن"],type:"إيسيكاي • أكشن",seasons:"موسمان",score:"8.2",emoji:"🌑",c1:"#18233f",c2:"#63328a",desc:"شاب يعيش خياله في الظلال، لكنّ خططه تتحوّل إلى أحداث أكبر بكثير ممّا توقّع."},
+{id:4,title:"The Great Cleric",ar:"ذا غريت كليريك",genre:["إيسيكاي","سحر","مغامرة"],type:"إيسيكاي • فانتازيا",seasons:"موسم متاح",score:"7.1",emoji:"🪄",c1:"#276b61",c2:"#273b7a",desc:"شاب يُولد من جديد في عالم آخر ويختار طريق المعالجة والتدرّب ليصبح أقوى."},
+{id:5,title:"Black Clover",ar:"بلاك كلوفر",genre:["سحر","أكشن","مغامرة"],type:"فانتازيا • أكشن",seasons:"حلقات كثيرة",score:"8.1",emoji:"🍀",c1:"#1f633f",c2:"#1c2f53",desc:"في عالم يعتمد على السحر، يحلم أستا بأن يصبح ملك السحرة رغم بدايته الصعبة."},
+{id:6,title:"Mashle: Magic and Muscles",ar:"ماشلي",genre:["سحر","أكشن","كوميديا"],type:"فانتازيا • كوميديا",seasons:"موسمان",score:"7.6",emoji:"💪",c1:"#477e8c",c2:"#b18b48",desc:"في عالم السحر، يعتمد ماش على قوّته البدنية غير العادية ويقع في مواقف مضحكة ومليئة بالتحدّي."},
+{id:7,title:"Re:ZERO -Starting Life in Another World-",ar:"ري:زيرو",genre:["إيسيكاي","سحر","مغامرة"],type:"إيسيكاي • دراما",seasons:"عدّة مواسم",score:"8.1",emoji:"⏳",c1:"#623a7a",c2:"#283e69",desc:"شاب يجد نفسه في عالم آخر، وتتحوّل رحلته إلى سلسلة من الأسرار والقرارات الصعبة."},
+{id:8,title:"Solo Leveling",ar:"سولو ليفلينغ",genre:["أكشن","مغامرة"],type:"فانتازيا • أكشن",seasons:"مواسم متاحة",score:"8.5",emoji:"⚔️",c1:"#172a53",c2:"#5a347c",desc:"صيّاد ضعيف يحصل على فرصة فريدة للتطوّر ومواجهة تحدّيات أقوى مع كل خطوة."},
+{id:9,title:"KonoSuba",ar:"كونوسوبا",genre:["إيسيكاي","كوميديا","مغامرة"],type:"إيسيكاي • كوميديا",seasons:"عدّة مواسم",score:"7.8",emoji:"💥",c1:"#287a9b",c2:"#7b3b82",desc:"مغامرة في عالم آخر مع فريق غريب الأطوار ومواقف كوميدية كثيرة."},
+{id:10,title:"The Banished Former Hero Lives as He Pleases",ar:"البطل السابق المنفي",genre:["سحر","أكشن","مغامرة"],type:"فانتازيا • أكشن",seasons:"موسم متاح",score:"6.4",emoji:"🗡️",c1:"#6e633b",c2:"#344b70",desc:"بعد أن يُستبعد من عائلته، يحاول بطل سابق أن يعيش بحرية ويشقّ طريقه الخاص."},
+{id:11,title:"Rokudenashi Majutsu Koushi",ar:"أكاشيك ريكوردز",genre:["سحر","أكشن","كوميديا"],type:"سحر • مدرسي",seasons:"موسم متاح",score:"7.6",emoji:"📘",c1:"#384d8b",c2:"#6b397b",desc:"أستاذ سحر يبدو كسولًا، لكنّه يخفي أسلوبًا مختلفًا وقدرات مفاجئة."},
+{id:12,title:"Hai to Gensou no Grimgar",ar:"غريمار: الرماد والأوهام",genre:["إيسيكاي","مغامرة"],type:"إيسيكاي • مغامرة",seasons:"موسم متاح",score:"7.6",emoji:"🌲",c1:"#446c50",c2:"#6a4b71",desc:"مجموعة تستيقظ في عالم غامض وتحاول البقاء على قيد الحياة بالتعاون والتعلّم."}
+];
+let selectedCat="الكل",view="home",favorites=new Set(JSON.parse(localStorage.getItem("saifAnimeFavs")||"[]"));
+const grid=document.getElementById("grid"),search=document.getElementById("search");
+function render(){const q=search.value.trim().toLowerCase();let list=animeList.filter(a=>{const matchesCat=selectedCat==="الكل"||a.genre.includes(selectedCat);const matchesQ=(a.title+" "+a.ar+" "+a.genre.join(" ")).toLowerCase().includes(q);const matchesView=view!=="favorites"||favorites.has(a.id);return matchesCat&&matchesQ&&matchesView});document.getElementById("listTitle").textContent=view==="favorites"?"أنمياتك المفضّلة ❤️":selectedCat==="الكل"?"أنميات تستحقّ الاكتشاف ✨":selectedCat+" — اختياراتنا";document.getElementById("resultCount").textContent=list.length+" أنمي";document.getElementById("favCount").textContent=favorites.size;if(!list.length){grid.innerHTML='<div class="empty">ما لقيناش نتائج هنا 😅<br>جرّب كلمة أخرى أو زِد أنميات للمفضّلة.</div>';return}grid.innerHTML=list.map(a=>`<article class="card" data-open="${a.id}"><div class="poster" style="--c1:${a.c1};--c2:${a.c2}"><span class="score">★ ${a.score}</span><button class="heart ${favorites.has(a.id)?"saved":""}" data-fav="${a.id}" aria-label="إضافة للمفضلة">${favorites.has(a.id)?"♥":"♡"}</button><span class="symbol">${a.emoji}</span></div><div class="cardbody"><div class="cardtitle">${a.ar}</div><div class="meta"><span>${a.type}</span><span>•</span><span>${a.seasons}</span></div><span class="tag">${a.genre[0]}</span></div></article>`).join("");}
+function saveFav(id){id=Number(id);favorites.has(id)?favorites.delete(id):favorites.add(id);localStorage.setItem("saifAnimeFavs",JSON.stringify([...favorites]));render()}
+function openDetail(id){const a=animeList.find(x=>x.id===Number(id));if(!a)return;document.getElementById("detail").innerHTML=`<div class="detailhero" style="background:linear-gradient(125deg,${a.c1},${a.c2})"><div class="detailicon">${a.emoji}</div><div><h2>${a.ar}</h2><div style="font-size:12px;color:#eee">${a.title}</div><div style="margin-top:8px">★ ${a.score}　•　${a.seasons}</div></div></div><p class="desc">${a.desc}</p><p><strong>التصنيفات:</strong> ${a.genre.join("، ")}</p><div class="actions"><button class="cta" id="detailFav">${favorites.has(a.id)?"♥ في المفضّلة":"♡ أضف للمفضّلة"}</button><button class="secondary" id="searchMore">🔎 ابحث عن مصادر قانونية</button></div><div class="note">المشاهدة: النسخة الحالية لا تستضيف حلقات. استعمل خدمات رسمية مرخّصة في منطقتك، وتحقّق من توفّر الأنمي قبل المشاهدة.</div>`;document.getElementById("modal").classList.add("open");document.getElementById("detailFav").onclick=()=>{saveFav(a.id);openDetail(a.id)};document.getElementById("searchMore").onclick=()=>{const url="https://www.google.com/search?q="+encodeURIComponent(a.title+" official streaming legal");window.open(url,"_blank","noopener")}}
+grid.addEventListener("click",e=>{const fav=e.target.closest("[data-fav]");if(fav){e.stopPropagation();saveFav(fav.dataset.fav);return}const card=e.target.closest("[data-open]");if(card)openDetail(card.dataset.open)});
+document.getElementById("closeModal").onclick=()=>document.getElementById("modal").classList.remove("open");document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")e.currentTarget.classList.remove("open")});
+search.addEventListener("input",render);document.getElementById("tabs").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;selectedCat=b.dataset.cat;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));view="discover";document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.view===view));render()});
+function setView(v){view=v;if(v==="home"){selectedCat="الكل";search.value="";document.querySelectorAll(".tab").forEach((x,i)=>x.classList.toggle("active",i===0))}if(v==="discover")selectedCat="الكل";document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.view===v));render()}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>setView(b.dataset.view));document.getElementById("headFav").onclick=()=>setView("favorites");document.getElementById("explore").onclick=()=>{document.getElementById("tabs").scrollIntoView({behavior:"smooth",block:"start"});setView("discover")};
+render();
+
+// نموذج واجهة محلي فقط. الأكواد في HTML ليست حماية آمنة؛ الإنتاج يحتاج خادمًا.
+const DEMO_ADMIN_CODE = "es7g6n54na";
+let DEMO_DEV_CODE = "SAIF-DEV-2026";
+const devModal = document.getElementById("devModal");
+const devMsg = document.getElementById("devMsg");
+const devTools = document.getElementById("devTools");
+const adminTools = document.getElementById("adminTools");
+let currentRole = null;
+let currentVideoUrl = null;
+document.getElementById("devEntry").onclick = () => {
+  devModal.classList.add("open");
+  devMsg.textContent = "";
+};
+document.getElementById("closeDev").onclick = () => {
+  devModal.classList.remove("open");
+};
+devModal.addEventListener("click", e => {
+  if (e.target === devModal) devModal.classList.remove("open");
+});
+document.getElementById("devLogin").onclick = () => {
+  const role = document.getElementById("roleSelect").value;
+  const pass = document.getElementById("devPass").value;
+  const ok = role === "admin" ? pass === DEMO_ADMIN_CODE : pass === DEMO_DEV_CODE;
+  if (ok) {
+    currentRole = role;
+    devTools.style.display = "block";
+    adminTools.style.display = role === "admin" ? "block" : "none";
+    devMsg.textContent = role === "admin" ? "دخلت كمدير رئيسي — أدوات الإدارة متاحة." : "دخلت كمطوّر — تنجم تضيف الحلقات.";
+    devMsg.style.color = "#a7f3d0";
+    renderAdminAnimeList();
+  } else {
+    devMsg.textContent = "الكود غير صحيح.";
+    devMsg.style.color = "#fda4af";
+  }
+};
+document.getElementById("changeDevCode").onclick = () => {
+  if (currentRole !== "admin") return;
+  const next = document.getElementById("newDevCode").value.trim();
+  if (next.length < 8) { document.getElementById("adminMsg").textContent = "اختار كودًا من 8 أحرف أو أكثر."; return; }
+  DEMO_DEV_CODE = next;
+  document.getElementById("newDevCode").value = "";
+  document.getElementById("adminMsg").textContent = "تبدّل كود المطوّرين في هذه الجلسة التجريبية فقط. إعادة تحميل الصفحة ترجع الكود التجريبي.";
+};
+const DB_NAME = "saifAnimeLibrary";
+const DB_VERSION = 1;
+let db = null;
+function openEpisodeDB() {
+  return new Promise((resolve, reject) => {
+    if (!("indexedDB" in window)) { reject(new Error("المتصفح لا يدعم التخزين المحلي المطلوب.")); return; }
+    const req = indexedDB.open(DB_NAME, DB_VERSION);
+    req.onupgradeneeded = () => {
+      const d = req.result;
+      if (!d.objectStoreNames.contains("episodes")) d.createObjectStore("episodes", { keyPath: "id", autoIncrement: true });
+    };
+    req.onsuccess = () => { db = req.result; resolve(db); };
+    req.onerror = () => reject(req.error || new Error("تعذّر فتح قاعدة البيانات."));
+  });
+}
+async function allEpisodes() {
+  const d = db || await openEpisodeDB();
+  return new Promise((resolve, reject) => {
+    const r = d.transaction("episodes", "readonly").objectStore("episodes").getAll();
+    r.onsuccess = () => resolve(r.result || []);
+    r.onerror = () => reject(r.error);
+  });
+}
+async function addEpisode(record) {
+  const d = db || await openEpisodeDB();
+  return new Promise((resolve, reject) => {
+    const r = d.transaction("episodes", "readwrite").objectStore("episodes").add(record);
+    r.onsuccess = () => resolve(r.result);
+    r.onerror = () => reject(r.error);
+  });
+}
+async function deleteEpisode(id) {
+  const d = db || await openEpisodeDB();
+  return new Promise((resolve, reject) => {
+    const r = d.transaction("episodes", "readwrite").objectStore("episodes").delete(Number(id));
+    r.onsuccess = resolve;
+    r.onerror = () => reject(r.error);
+  });
+}
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+async function renderEpisodes() {
+  const host = document.getElementById("episodeLibrary");
+  const adminHost = document.getElementById("savedEpisodesAdmin");
+  try {
+    const eps = await allEpisodes();
+    document.getElementById("episodeCount").textContent = eps.length + (eps.length === 1 ? " حلقة" : " حلقات");
+    if (!eps.length) host.innerHTML = '<div class="empty">ما فماش حلقات مضافة توّا. المطوّر ينجم يضيف فيديو يملك حق عرضه.</div>';
+    else host.innerHTML = eps.map(ep => `<article class="card"><div class="poster" style="--c1:#33214c;--c2:#7b3b82"><span class="symbol">▶️</span></div><div class="cardbody"><div class="cardtitle">${escapeHtml(ep.anime)} — ${escapeHtml(ep.title)}</div><div class="meta">${escapeHtml(ep.season || "الموسم 1")} • فيديو محلي</div><button class="cta" style="margin-top:10px;width:100%" data-play-ep="${ep.id}">شاهد الحلقة</button></div></article>`).join("");
+    adminHost.innerHTML = eps.length ? '<h3>الحلقات المحفوظة</h3>' + eps.map(ep => `<div class="note">${escapeHtml(ep.anime)} — ${escapeHtml(ep.season || "الموسم 1")} — ${escapeHtml(ep.title)} <button class="secondary" data-delete-ep="${ep.id}">حذف</button></div>`).join("") : "";
+  } catch (err) {
+    host.innerHTML = '<div class="empty">التخزين المحلي غير متاح في هذا المتصفح. جرّب فتح الملف في متصفح الهاتف.</div>';
+    document.getElementById("episodeCount").textContent = "غير متاح";
+  }
+}
+function playEpisode(id) {
+  allEpisodes().then(eps => {
+    const ep = eps.find(x => x.id === Number(id));
+    if (!ep) return;
+    const modal = document.getElementById("modal");
+    const detail = document.getElementById("detail");
+    if (currentVideoUrl) URL.revokeObjectURL(currentVideoUrl);
+    currentVideoUrl = URL.createObjectURL(ep.video);
+    detail.innerHTML = `<h2>${escapeHtml(ep.anime)} — ${escapeHtml(ep.title)}</h2><video id="episodePlayer" controls autoplay playsinline style="width:100%;margin:12px 0;border-radius:12px;background:#000"><source src="${currentVideoUrl}"></video>`;
+    modal.classList.add("open");
+  }).catch(() => { alert("تعذّر فتح الحلقة في هذا المتصفح."); });
+}
+document.getElementById("saveEpisode").onclick = async () => {
+  const fileInput = document.getElementById("episodeFile");
+  const videos = Array.from(fileInput.files || []);
+  const anime = document.getElementById("episodeAnime").value.trim();
+  const title = document.getElementById("episodeTitle").value.trim();
+  const season = document.getElementById("episodeSeason").value.trim() || "الموسم 1";
+  if (!videos.length || videos.some(v => !v.type.startsWith("video/"))) { devMsg.textContent = "اختار ملف فيديو واحد على الأقل."; return; }
+  if (!anime) { devMsg.textContent = "اكتب اسم الأنمي."; return; }
+  if (videos.length === 1 && !title) { devMsg.textContent = "اكتب عنوان الحلقة."; return; }
+  try {
+    for (let i = 0; i < videos.length; i++) {
+      const video = videos[i];
+      const cleanName = video.name.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim();
+      const episodeName = title && videos.length === 1 ? title : (cleanName || `الحلقة ${i+1}`);
+      await addEpisode({anime, season, title: episodeName, video, addedAt: Date.now()});
+    }
+    devMsg.textContent = `تم حفظ ${videos.length} حلقة في ${season}. تنجم ترجع وتكتب نفس اسم الموسم لإضافة حلقات جديدة إليه.`;
+    devMsg.style.color = "#a7f3d0";
+    fileInput.value = ""; document.getElementById("episodeTitle").value = "";
+    await renderEpisodes();
+  } catch (e) {
+    devMsg.textContent = "تعذّر الحفظ. يمكن الملفات كبيرة أو مساحة المتصفح غير كافية.";
+    devMsg.style.color = "#fda4af";
+  }
+};
+document.getElementById("episodeLibrary").addEventListener("click", e => {
+  const b = e.target.closest("[data-play-ep]");
+  if (b) playEpisode(b.dataset.playEp);
+});
+document.getElementById("savedEpisodesAdmin").addEventListener("click", async e => {
+  const b = e.target.closest("[data-delete-ep]");
+  if (!b) return;
+  if (confirm("متأكد تحب تحذف الحلقة من هذا المتصفح؟")) {
+    await deleteEpisode(b.dataset.deleteEp);
+    await renderEpisodes();
+  }
+});
+async function renderAdminAnimeList() {
+  const host = document.getElementById("animeDeleteList");
+  if (!host) return;
+  host.innerHTML = animeList.map(a => `<div class="note">${escapeHtml(a.ar)} <button class="secondary" data-delete-anime="${a.id}">حذف الأنمي</button></div>`).join("");
+}
+document.getElementById("animeDeleteList").addEventListener("click", async e => {
+  const b = e.target.closest("[data-delete-anime]");
+  if (!b || currentRole !== "admin") return;
+  const a = animeList.find(x => x.id === Number(b.dataset.deleteAnime));
+  if (!a || !confirm(`متأكد تحب تحذف "${a.ar}" من قائمة الأنميات التجريبية؟`)) return;
+  const eps = await allEpisodes();
+  for (const ep of eps.filter(x => x.anime.toLowerCase() === a.ar.toLowerCase() || x.anime.toLowerCase() === a.title.toLowerCase())) await deleteEpisode(ep.id);
+  const idx = animeList.findIndex(x => x.id === a.id);
+  if (idx >= 0) animeList.splice(idx, 1);
+  render(); renderAdminAnimeList(); renderEpisodes();
+});
+renderEpisodes();
+</script>
+</body></html>
